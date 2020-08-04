@@ -6,6 +6,8 @@ import studyIcon from '../../assets/images/icons/study.svg';
 import giveClassesIcon from '../../assets/images/icons/study.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
+import './styles.css';
+
 function Landing() {
   return (
     <div id="page-landing">
@@ -22,16 +24,16 @@ function Landing() {
 
         <div className="buttons-container">
           <a href="#" className="study">
-            <img src={studyIcon} alt="Estudar" />
+            <img src={studyIcon} alt="Estudar" /> Estudar
           </a>
 
-          <a href="#" className="study">
-            <img src={giveClassesIcon} alt="Dar aulas" />
+          <a href="#" className="give-classes">
+            <img src={giveClassesIcon} alt="Dar aulas" /> Dar aulas
           </a>
         </div>
 
         <span className="total-connections">
-          Total de 200 conexões já realizadas{' '}
+          Total de 200 conexões já realizadas&nbsp;
           <img src={purpleHeartIcon} alt="Coração roxo por conexões" />
         </span>
       </div>
