@@ -3,42 +3,56 @@ import React from 'react';
 import whatsApp from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  function createConnection() {
+    api.post('connections', {
+      user_id: teacher.id,
+    });
+  }
   return (
     <article className="teacher-item">
       <header>
-        <img
-          src="https://avatars3.githubusercontent.com/u/18222796?s=460&u=69b77bfeaf625a570eb0d5be6086cd1e3811262e&v=4"
-          alt="Marcelo Silva"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Marcelo Silva</strong>
-          <span>Computer science</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta Python e principalmente Javascript.
-        <br />
-        <br />
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe non ea
-        voluptatum et, totam sapiente doloribus iusto dolorum, aspernatur
-        similique temporibus voluptatem quam maxime eius quaerat voluptate
-        corporis modi odio?
-      </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 69,00</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a
+          target="_blank"
+          onClick={createConnection}
+          href={`https://wa.me/${teacher.whatsapp}`}
+          type="button"
+        >
           <img src={whatsApp} alt="WhatsApp icon" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );
-}
+};
 
 export default TeacherItem;
